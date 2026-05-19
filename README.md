@@ -1,10 +1,10 @@
-# 🎮 Maze Analytics Dashboard
+# Maze Analytics Dashboard
 
 Dashboard web profesional en tiempo real para análisis de comportamiento de jugadores en un juego de laberinto desarrollado en Unity, conectado a Firebase Firestore.
 
 ---
 
-## 🚀 Configuración rápida
+## Configuración rápida
 
 ### 1. Instalar dependencias
 ```bash
@@ -33,7 +33,7 @@ Abre [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🗄️ Estructura de datos en Firestore
+## Estructura de datos en Firestore
 
 El dashboard consume dos colecciones de Firestore. Toda la información que ves en pantalla proviene directamente de estos documentos.
 
@@ -67,7 +67,7 @@ Cada documento representa **el mejor puntaje histórico de un jugador**. El ID d
 
 ---
 
-## 📊 Métricas globales — Cómo se calculan
+## Métricas globales — Cómo se calculan
 
 Estas métricas aparecen en las **12 tarjetas** de la sección **Overview** y se recalculan automáticamente cada vez que llegan datos nuevos desde Firestore.
 
@@ -169,7 +169,7 @@ Promedio del tiempo que les sobra del temporizador a los jugadores al terminar l
 
 ---
 
-## 👤 Métricas por jugador
+## Métricas por jugador
 
 En la sección **Players**, el dashboard agrupa todas las sesiones por `playerName` y calcula métricas individuales.
 
@@ -205,7 +205,7 @@ La colección `highscores` es independiente de `sessions`. Unity actualiza direc
 
 ---
 
-## 📈 Datos de tendencias (Trends)
+## Datos de tendencias (Trends)
 
 Para los gráficos de líneas y área en las secciones **Trends** y **Overview**, el dashboard genera un punto de datos por cada día de los últimos 30 días:
 
@@ -224,7 +224,7 @@ Si un día no tiene sesiones, todos los valores se reportan como `0`.
 
 ---
 
-## 🗺️ Heatmaps — Cómo se construyen
+## Heatmaps — Cómo se construyen
 
 Los mapas de calor muestran patrones de actividad distribuyendo las sesiones por **día de la semana** (0=Dom … 6=Sáb) y **hora del día** (0–23).
 
@@ -254,7 +254,7 @@ Muestra en qué horarios los jugadores obtienen mejores puntajes.
 
 ---
 
-## 🕸️ Radar Chart — Normalización de ejes
+## Radar Chart — Normalización de ejes
 
 El **radar de rendimiento** de cada sesión tiene 6 dimensiones, todas normalizadas a un rango de **0 a 100**:
 
@@ -271,26 +271,26 @@ Todos los valores se recortan entre `0` y `100` con `Math.min` / `Math.max`.
 
 ---
 
-## 💡 Insights automáticos — Reglas de detección
+## Insights automáticos — Reglas de detección
 
 Al abrir el detalle de una sesión, el dashboard genera insights comparando la sesión con las métricas globales:
 
 | Condición | Tipo | Mensaje |
 |-----------|------|---------|
-| `finalScore > avgScore * 1.5` | ✅ Positivo | "Outstanding Score" |
-| `finalScore < avgScore * 0.5` | ❌ Negativo | "Below Average Score" |
-| `collisions > avgCollisions * 1.5` | ⚠️ Advertencia | "High Collision Rate" |
-| `collisions < avgCollisions * 0.5` | ✅ Positivo | "Excellent Navigation" |
-| `pathEfficiency > avgEfficiency/100 * 1.3` | ✅ Positivo | "High Path Efficiency" |
-| `averageDecisionTime < avgDecisionTime * 0.7` | ✅ Positivo | "Fast Decision Making" |
-| `averageDecisionTime > avgDecisionTime * 1.5` | ℹ️ Neutral | "Careful Decision Making" |
-| `reachedGoal === true` | ✅ Positivo | "Goal Reached" |
-| `reachedGoal === false` | ❌ Negativo | "Goal Not Reached" |
-| `wrongTurns > avgWrongTurns * 1.5` | ⚠️ Advertencia | "Many Wrong Turns" |
+| `finalScore > avgScore * 1.5` | Positivo | "Outstanding Score" |
+| `finalScore < avgScore * 0.5` | Negativo | "Below Average Score" |
+| `collisions > avgCollisions * 1.5` | Advertencia | "High Collision Rate" |
+| `collisions < avgCollisions * 0.5` | Positivo | "Excellent Navigation" |
+| `pathEfficiency > avgEfficiency/100 * 1.3` | Positivo | "High Path Efficiency" |
+| `averageDecisionTime < avgDecisionTime * 0.7` | Positivo | "Fast Decision Making" |
+| `averageDecisionTime > avgDecisionTime * 1.5` | Neutral | "Careful Decision Making" |
+| `reachedGoal === true` | Positivo | "Goal Reached" |
+| `reachedGoal === false` | Negativo | "Goal Not Reached" |
+| `wrongTurns > avgWrongTurns * 1.5` | Advertencia | "Many Wrong Turns" |
 
 ---
 
-## 🎨 Distribuciones (sección Performance)
+## Distribuciones (sección Performance)
 
 ### Distribución de Scores
 Las sesiones se agrupan en 6 rangos fijos y se cuenta cuántas caen en cada uno:
@@ -317,7 +317,7 @@ Las sesiones se agrupan en 5 rangos de tiempo:
 
 ---
 
-## 🔧 Filtros disponibles
+## Filtros disponibles
 
 En la sección **Sessions** se pueden aplicar los siguientes filtros sobre el conjunto de sesiones:
 
@@ -335,7 +335,7 @@ El filtro de **rango de fechas** del header también aplica globalmente a todas 
 
 ---
 
-## 🏗️ Arquitectura del código
+## Arquitectura del código
 
 ```
 src/
@@ -372,7 +372,7 @@ Componentes React                 ← re-render automático al llegar datos nuev
 
 ---
 
-## 📦 Stack tecnológico
+## Stack tecnológico
 
 | Tecnología | Versión | Uso |
 |-----------|---------|-----|
