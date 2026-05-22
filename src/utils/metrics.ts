@@ -1,11 +1,8 @@
-// ============================================================
-// UTILITY FUNCTIONS - Metrics Calculations
-// ============================================================
 
 import { Session, GlobalMetrics, PlayerMetrics, TrendData, HeatmapCell, InsightData } from '@/types';
 import { format, subDays, isAfter, parseISO } from 'date-fns';
 
-// --- Global Metrics Calculation ---
+
 
 export function calculateGlobalMetrics(sessions: Session[]): GlobalMetrics {
   if (sessions.length === 0) {
@@ -53,7 +50,7 @@ export function calculateGlobalMetrics(sessions: Session[]): GlobalMetrics {
   };
 }
 
-// --- Player Metrics ---
+
 
 export function calculatePlayerMetrics(sessions: Session[]): PlayerMetrics[] {
   const playerMap = new Map<string, Session[]>();
@@ -87,7 +84,7 @@ export function calculatePlayerMetrics(sessions: Session[]): PlayerMetrics[] {
   }).sort((a, b) => b.bestScore - a.bestScore);
 }
 
-// --- Trend Data ---
+
 
 export function calculateTrends(sessions: Session[], days: number = 30): TrendData[] {
   const now = new Date();
@@ -129,7 +126,7 @@ export function calculateTrends(sessions: Session[], days: number = 30): TrendDa
   return trends;
 }
 
-// --- Heatmap Data ---
+
 
 export function calculateHeatmap(sessions: Session[]): HeatmapCell[] {
   const heatmap: HeatmapCell[] = [];
@@ -152,12 +149,12 @@ export function calculateHeatmap(sessions: Session[]): HeatmapCell[] {
   return heatmap;
 }
 
-// --- Session Insights ---
+
 
 export function generateSessionInsights(session: Session, globalMetrics: GlobalMetrics): InsightData[] {
   const insights: InsightData[] = [];
 
-  // Score analysis
+ 
   if (session.finalScore > globalMetrics.averageScore * 1.5) {
     insights.push({
       type: 'positive',
@@ -174,7 +171,7 @@ export function generateSessionInsights(session: Session, globalMetrics: GlobalM
     });
   }
 
-  // Collision analysis
+ 
   const avgCollisions = globalMetrics.totalCollisions / globalMetrics.totalSessions;
   if (session.collisions > avgCollisions * 1.5) {
     insights.push({
@@ -192,7 +189,7 @@ export function generateSessionInsights(session: Session, globalMetrics: GlobalM
     });
   }
 
-  // Efficiency analysis
+ 
   const avgEff = globalMetrics.avgEfficiency / 100;
   if (session.pathEfficiency > avgEff * 1.3) {
     insights.push({
@@ -203,7 +200,7 @@ export function generateSessionInsights(session: Session, globalMetrics: GlobalM
     });
   }
 
-  // Decision time
+ 
   if (session.averageDecisionTime < globalMetrics.avgDecisionTime * 0.7) {
     insights.push({
       type: 'positive',
@@ -220,7 +217,7 @@ export function generateSessionInsights(session: Session, globalMetrics: GlobalM
     });
   }
 
-  // Goal reached
+
   if (session.reachedGoal) {
     insights.push({
       type: 'positive',
@@ -237,7 +234,7 @@ export function generateSessionInsights(session: Session, globalMetrics: GlobalM
     });
   }
 
-  // Wrong turns
+  
   const avgWrongTurns = globalMetrics.avgWrongTurns;
   if (session.wrongTurns > avgWrongTurns * 1.5) {
     insights.push({
@@ -251,7 +248,7 @@ export function generateSessionInsights(session: Session, globalMetrics: GlobalM
   return insights;
 }
 
-// --- Formatting Utilities ---
+
 
 export function formatDuration(seconds: number): string {
   const mins = Math.floor(seconds / 60);
@@ -287,7 +284,7 @@ export function getEfficiencyColor(efficiency: number): string {
   return '#ef4444';
 }
 
-// --- CSV Export ---
+
 
 export function exportSessionsToCSV(sessions: Session[]): void {
   const headers = [
@@ -331,7 +328,6 @@ export function exportSessionsToCSV(sessions: Session[]): void {
   URL.revokeObjectURL(link.href);
 }
 
-// --- Date Filter ---
 
 export function filterSessionsByDateRange(sessions: Session[], range: string): Session[] {
   if (range === 'all') return sessions;
