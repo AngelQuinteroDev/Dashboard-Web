@@ -1,6 +1,3 @@
-// ============================================================
-// CUSTOM HOOKS - Firebase real-time data hooks
-// ============================================================
 
 'use client';
 
@@ -15,7 +12,7 @@ import {
   filterSessionsByDateRange,
 } from '@/utils/metrics';
 
-// --- Sessions Hook ---
+
 
 export function useSessions() {
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -41,7 +38,7 @@ export function useSessions() {
   return { sessions, loading, error };
 }
 
-// --- Highscores Hook ---
+
 
 export function useHighscores() {
   const [highscores, setHighscores] = useState<Highscore[]>([]);
@@ -67,19 +64,19 @@ export function useHighscores() {
   return { highscores, loading, error };
 }
 
-// --- Global Metrics Hook ---
+
 
 export function useGlobalMetrics(sessions: Session[]) {
   return useMemo(() => calculateGlobalMetrics(sessions), [sessions]);
 }
 
-// --- Player Metrics Hook ---
+
 
 export function usePlayerMetrics(sessions: Session[]) {
   return useMemo(() => calculatePlayerMetrics(sessions), [sessions]);
 }
 
-// --- Trends Hook ---
+
 
 export function useTrends(sessions: Session[], days: number = 30) {
   return useMemo(() => calculateTrends(sessions, days), [sessions, days]);
