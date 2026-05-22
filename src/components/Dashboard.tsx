@@ -32,24 +32,24 @@ export default function Dashboard() {
   const [dateRange, setDateRange] = useState('all');
   const [selectedPlayerFromSearch, setSelectedPlayerFromSearch] = useState<string | null>(null);
 
-  // Firebase data
+ 
   const { sessions: allSessions, loading: sessionsLoading, error: sessionsError } = useSessions();
   const { highscores, loading: highscoresLoading } = useHighscores();
   const { isConnected, lastUpdate } = useFirestoreConnection();
 
-  // Filter sessions by date range
+  
   const sessions = useMemo(
     () => filterSessionsByDateRange(allSessions, dateRange),
     [allSessions, dateRange]
   );
 
-  // Computed data
+
   const globalMetrics = useGlobalMetrics(sessions);
   const players = usePlayerMetrics(sessions);
   const trends = useTrends(sessions, 30);
   const heatmapData = useHeatmap(sessions);
 
-  // Player names for search
+  
   const playerNames = useMemo(
     () => [...new Set(allSessions.map((s) => s.playerName))],
     [allSessions]
@@ -57,7 +57,7 @@ export default function Dashboard() {
 
   const isLoading = sessionsLoading || highscoresLoading;
 
-  // Handle player search from header
+ 
   const handlePlayerSearch = (name: string) => {
     setSelectedPlayerFromSearch(name);
     setActiveSection('players');
