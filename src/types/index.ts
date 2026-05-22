@@ -1,10 +1,7 @@
-// ============================================================
-// MAZE ANALYTICS DASHBOARD - TYPE DEFINITIONS
-// ============================================================
+
 
 import { Timestamp } from 'firebase/firestore';
 
-// --- Firestore Document Types ---
 
 export interface SessionDocument {
   averageDecisionTime: number;
@@ -36,7 +33,7 @@ export interface Highscore extends HighscoreDocument {
   rank?: number;
 }
 
-// --- Metrics Types ---
+
 
 export interface GlobalMetrics {
   totalSessions: number;
@@ -83,7 +80,7 @@ export interface HeatmapCell {
   value: number;
 }
 
-// --- Filter Types ---
+
 
 export interface SessionFilters {
   playerName: string;
@@ -98,7 +95,7 @@ export interface SessionFilters {
   dateRange: 'all' | '7d' | '30d' | '90d';
 }
 
-// --- UI Types ---
+
 
 export type SidebarSection = 
   | 'overview'
@@ -129,7 +126,7 @@ export interface InsightData {
   icon: string;
 }
 
-// --- Chart Types ---
+
 
 export interface ChartDataPoint {
   name: string;
