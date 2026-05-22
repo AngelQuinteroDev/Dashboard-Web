@@ -24,7 +24,7 @@ export default function PerformanceRadarChart({
   globalMetrics,
   title = 'Performance Profile',
 }: PerformanceRadarChartProps) {
-  // Normalize values 0-100 for radar display
+  
   const maxScore = globalMetrics.maxScore || 1;
   const avgCollisions = globalMetrics.totalCollisions / (globalMetrics.totalSessions || 1);
   const avgWrongTurns = globalMetrics.avgWrongTurns || 1;
