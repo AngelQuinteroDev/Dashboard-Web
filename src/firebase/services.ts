@@ -1,6 +1,3 @@
-// ============================================================
-// FIRESTORE SERVICE - Data fetching & real-time listeners
-// ============================================================
 
 import {
   collection,
@@ -16,11 +13,11 @@ import {
 import { db } from './config';
 import { Session, SessionDocument, Highscore, HighscoreDocument } from '@/types';
 
-// --- Collection References ---
+
 const sessionsRef = collection(db, 'sessions');
 const highscoresRef = collection(db, 'highscores');
 
-// --- Transform Functions ---
+
 
 function transformSession(doc: DocumentData, id: string): Session {
   const data = doc as SessionDocument;
@@ -52,7 +49,7 @@ function transformHighscore(doc: DocumentData, id: string): Highscore {
   };
 }
 
-// --- Real-time Listeners ---
+
 
 export function subscribeSessions(
   callback: (sessions: Session[]) => void,
@@ -97,7 +94,7 @@ export function subscribeHighscores(
   );
 }
 
-// --- One-time Fetchers ---
+
 
 export async function fetchSessions(): Promise<Session[]> {
   const q = query(sessionsRef, orderBy('startTime', 'desc'));
